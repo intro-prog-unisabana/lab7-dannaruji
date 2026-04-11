@@ -78,14 +78,19 @@ def change_password(filename: str, website: str, password: str) -> bool:
 
 def encrypt(password):
     result = ""
+
     for letras in password:
-        if letras.isalpha():
-            result += chr(ord(letras) + 3)
+        if letras.islower():
+            result += chr((ord(letras) - ord('a') + 3) % 26 + ord('a'))
+        elif letras.isupper():
+            result += chr((ord(letras) - ord('A') + 3) % 26 + ord('A'))
         elif letras.isdigit():
             result += str((int(letras) + 3) % 10)
         else:
             result += letras
+
     return result
+
 
 def add_login(filename: str, website_name: str, username: str, password: str) -> None:
     encrypted_password = encrypt(password)
