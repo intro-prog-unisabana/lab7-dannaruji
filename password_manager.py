@@ -53,8 +53,8 @@ def encrypt(password):
 def change_password(filename: str, website: str, password: str) -> bool:
     rows = []
 
-    with open(filename, "r", newline = "") as file:
-        reader = csv.reader(file)
+    with open(filename, "r", newline = "") as f:
+        reader = csv.reader(f)
         for row in reader:
             if row:
                 rows.append(row)
@@ -70,16 +70,15 @@ def change_password(filename: str, website: str, password: str) -> bool:
     if not found:
         return False
     
-    with open(filename, "w", newline = "") as file:
-        writer = csv.writer(file)
+    with open(filename, "w", newline = "") as f:
+        writer = csv.writer(f)
         writer.writerows(rows)
 
     return True
 
-
-
-
-
 def add_login(filename: str, website_name: str, username: str, password: str) -> None:
-    """TODO: Parte 4."""
-    pass
+    encrypted_password = encrypt(password)
+
+    with open(filename, "a", newline ="") as f:
+        writer = csv.writer(f)
+        writer.writerow([website_name, username, encrypted_password])
