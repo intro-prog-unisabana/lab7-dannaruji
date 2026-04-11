@@ -34,13 +34,8 @@ def encrypt_passwords_in_file(filename: str) -> None:
         writer = csv.writer(f)
         writer.writerows(rows)
 
-
 if __name__ == "__main__":
     encrypt_passwords_in_file("example/example2.csv") 
-
-
-
-
 
 
 
