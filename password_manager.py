@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 
 def encrypt(password):
-    encrypted = ""
+    result = ""
     for letras in password:
         if letras.isalpha():
             result += chr(ord(letras) + 3)
