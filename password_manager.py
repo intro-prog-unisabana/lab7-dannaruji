@@ -42,8 +42,13 @@ if __name__ == "__main__":
 def encrypt(password):
     encrypted = ""
     for letras in password:
-        encrypted += chr(ord(letras) + 3)
-    return encrypted
+        if letras.isalpha():
+            result += chr(ord(letras) + 3)
+        elif letras.isdigit():
+            result += str((int(letras) + 3) % 10)
+        else:
+            result += letras
+    return result
 
 def change_password(filename: str, website: str, password: str) -> bool:
     rows = []
